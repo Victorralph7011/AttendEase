@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - AttendEase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: radial-gradient(ellipse at left, #124646 0%, #0B292B 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 900px;
+      max-width: 99vw;
+      display: flex;
+      border-radius: 20px;
+      background: none;
+      box-shadow: none;
+      overflow: visible;
+      margin: 8vh auto;
+    }
+    .side-image {
+      flex: 1 1 52%;
+      background: url('../images/yourimage.jpg') no-repeat center center/cover;
+      min-height: 440px;
+      border-radius: 20px 0 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+      position: relative;
+    }
+    .side-image::before {
+      content:"";
+      position:absolute;inset:0;z-index:1;
+      background: rgba(12,41,43,0.54);
+      border-radius:20px 0 0 20px;
+    }
+    .side-image-content {
+      position: relative;
+      z-index:2;
+      font-size: 1.01rem;
+      padding: 38px 34px 35px 44px;
+      width: 100%;
+    }
+    .side-image-content h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.1;
+      margin-top: 4px;
+      letter-spacing: -0.03em;
+    }
+    .side-image-content p {
+      font-size: 0.91rem;
+      font-weight: 400;
+      opacity: 0.83;
+      line-height: 1.4;
+    }
+    .login-right {
+      width: 380px;
+      background: #fff;
+      border-radius: 0 20px 20px 0;
+      box-shadow: 0 6px 36px rgba(12,36,36,0.13);
+      padding: 34px 29px 28px 29px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: auto;
+    }
+    .login-header {
+      width: 100%;
+      text-align:left;
+      margin-bottom: 10px;
+      margin-top:8px;
+    }
+    .login-header h2 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #151515;
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+      line-height: 1.2;
+    }
+    .login-header p {
+      color: #444;
+      font-size: 0.83rem;
+      font-weight: 500;
+      margin: 0 0 8px 0;
+    }
+    .email-info-box {
+      background: #ecf5fb;
+      border-radius: 13px;
+      margin-bottom: 18px;
+      border-left: 6px solid #093446;
+      color: #093446;
+      padding: 15px 18px 11px 18px;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 6px 0 rgba(9,52,70,0.10);
+      width: 100%;
+      margin-top: 9px;
+    }
+    .email-info-box b {
+      color: #093446;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .email-info-box ul {
+      margin: 7px 0 0 17px;
+      padding-left: 0;
+      font-size: 0.94rem;
+    }
+    .email-info-box li { margin-bottom: 2px; }
+    .form-group { margin-bottom: 9px;}
+    .form-group label {
+      color: #212829;
+      font-weight: 500;
+      margin-bottom:2px;
+      font-size:.80rem;
+      display:block;
+      letter-spacing: .01em;
+    }
+    .input-wrapper {position: relative;margin-top:2px;}
+    .input-wrapper i {
+      position: absolute; left:12px; top:50%;
+      transform: translateY(-50%);
+      color: #979797;
+      font-size:.82rem;
+    }
+    .form-control {
+      width: 100%; padding: 7px 11px 7px 33px;
+      border: 1px solid #dedede; border-radius: 7px;
+      font-size: .80rem;
+      background: #f8f8f8; color: #181818;
+      outline: none; transition: border .12s, background .1s;
+      font-weight:500;
+    }
+    .form-control:focus {border-color: #0B292B; background: #fff;}
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 11px;
+      font-size: .81rem;
+      width: 100%;
+      gap: 10px;
+    }
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .remember-me input[type="checkbox"] {
+      width: 11px;
+      height: 11px;
+    }
+    .forgot-password {
+      color: #0B292B;
+      text-decoration:none;font-weight:500;transition:color .11s;
+      font-size: 0.78rem;
+      margin-left: 18px;
+    }
+    .forgot-password:hover { text-decoration: underline; color:#232323;}
+    .btn-login {
+      width:100%;padding:7px 0;
+      background: #181818;
+      color:#fff;border:none;border-radius:7px;
+      font-size:0.93rem;font-weight:700;cursor:pointer;
+      box-shadow:0 2px 7px rgba(20,20,20,0.11);
+      transition:background .14s, box-shadow .11s, transform .10s;
+      margin-top:11px;
+    }
+    .btn-login:hover {background:#0B292B;}
+    .btn-login:active {transform:translateY(0);}
+    .btn-login:disabled {opacity:.6; cursor:not-allowed;}
+    .signup-link-row {
+      font-size: .8rem;
+      margin: 11px 0 0 0;
+      text-align: center;
+      width: 100%;
+      color: #222;
+    }
+    .signup-link-row a {
+      color: #181818;
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 1.5px;
+      transition: color .13s;
+    }
+    .signup-link-row a:hover { color: #0b292b;}
+    .alert { padding: 6.5px 10px; border-radius:7px;
+      margin-bottom:9px;
+      display:none;animation:slideDown .14s;
+      font-size:.81rem;
+    }
+    .alert-error {background:#fee; color:#c33; border:1px solid #fcc;}
+    .alert-success {background:#efe; color:#3c3; border:1px solid #cfc;}
+    .spinner {
+      display:inline-block;width:12px;height:12px;
+      border:3px solid rgba(255,255,255,.29);border-radius:50%;
+      border-top-color:#111;animation:spin 1s linear infinite;vertical-align:middle;margin-left:3px;
+    }
+    /* SIGNUP MODAL etc ... (unchanged) */
+    .modal-bg {
+      position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(25,50,58,0.17);z-index:88;display:none;align-items:center;justify-content:center;
+    }
+    .modal-bg.show {display:flex;}
+    .signup-modal {
+      background:#fff;
+      border-radius:18px;
+      box-shadow:0 8px 60px rgba(0,0,0,0.10);
+      min-width:335px;max-width:96vw;
+      padding:34px 22px 14px 22px;
+      text-align:center;
+      position:relative;
+      font-size:.91rem;
+    }
+    .signup-modal h2 {
+      font-size:1.32rem;
+      font-weight:800;
+      margin-bottom:17px;
+      letter-spacing:-0.01em;
+      text-align:center;
+      color:#1A1A1A;
+    }
+    .form-signup {width:100%;margin:0;}
+    .form-signup .signup-inp {
+      width:100%;
+      padding:9px 8px;
+      border-radius:6px;
+      border:1.1px solid #dedede;
+      margin-bottom:9px;
+      background:#f8f8f8;
+      font-size:.92rem;
+      color:#111;
+      outline:none;
+      font-family:inherit;
+      font-weight:500;
+      transition:border .14s, background .13s;
+    }
+    .form-signup .signup-inp:focus { border-color:#0b292b; background:#fff;}
+    .signup-modal .terms-row {
+      text-align:left;
+      font-size:.80rem;
+      margin: 4px 0 16px 0;
+    }
+    .signup-modal .terms-row label {
+      cursor:pointer;font-weight:400;color:#555;
+    }
+    .signup-modal .terms-row input[type="checkbox"] {
+      margin-right:5px;
+      vertical-align:-1.5px;
+    }
+    .signup-modal .btn-signup-main {
+      width:100%;
+      border-radius:6px;
+      border:none;
+      background:#181818;
+      color:#fff;
+      padding:9px 0;
+      font-size:1.02rem;
+      font-weight:700;
+      margin-bottom:9px;
+      cursor:pointer;
+      transition:background .18s, box-shadow .19s;
+    }
+    .signup-modal .btn-signup-main:hover { background: #0B292B;}
+    .signup-modal .or-row {
+      color:#888;
+      font-size:.93rem;
+      margin:13px 0 7px 0;
+      letter-spacing: .08em;
+      position:relative;
+    }
+    .signup-modal .or-row:before, .signup-modal .or-row:after {
+      content:"";display:inline-block;height:1px;vertical-align:middle;width:27%;background:#eee;margin:0 8px;
+    }
+    .signup-modal .google-btn, .signup-modal .apple-btn {
+      width:100%;border-radius:6px;padding:9px 0;margin-bottom:8px;
+      font-weight:600;font-family:inherit;font-size:.99rem;
+      border: 1.1px solid #dadada;
+      background:#fff; color:#222;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:7px;
+      transition:background .14s, border .12s;
+    }
+    .signup-modal .google-btn i {color:#4285F4;font-size:1.09em;}
+    .signup-modal .google-btn:hover {background:#f7f7f7;}
+    .signup-modal .apple-btn {background: #111; color: #fff; border: none;}
+    .signup-modal .apple-btn i {color:#fff;font-size:1.07em;}
+    .signup-modal .apple-btn:hover {background:#333;}
+    .close-modal {
+      position:absolute;top:12px;right:19px;font-size:1.35em;cursor:pointer;color:#aaa;font-weight:700;z-index:3;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      outline: none;
+     }
+    .close-modal:hover {color:#222;opacity:1;}
+    @keyframes slideDown {from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes spin {to{transform:rotate(360deg);}}
+    @media (max-width: 900px){
+      .container{flex-direction:column;width:99vw;}
+      .side-image, .login-right {border-radius:18px;}
+      .side-image{min-height:90px;width:100%;}
+      .login-right {margin:0 auto;}
+    }
+    @media (max-width: 600px){
+      .side-image-content h2 {font-size:0.98rem;}
+      .login-header h2{font-size:0.75rem;}
+      .login-right{padding:4vw 2vw;}
+      .email-info-box {font-size:.83rem;}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="side-image">
+    <div class="side-image-content">
+      <h2>AttendEase</h2>
+      <p>Smart Attendance & Marks Management
+System for SRMIST<br></p>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="login-header">
+      <h2>Welcome Back!</h2>
+      <p>Please login to your account</p>
+    </div>
+    <!-- EMAIL INFO BOX -->
+    <div class="email-info-box">
+      <b>Email Format:</b>
+      <ul>
+        <li>Teachers/Admin: ab1234@srmist.edu.in</li>
+        <li>Students: Any valid email</li>
+      </ul>
+    </div>
+    <div id="alertBox" class="alert"></div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+      </div>
+      <div class="form-options">
+        <div class="remember-me">
+          <input type="checkbox" id="rememberMe" name="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+      <button type="submit" class="btn-login" id="loginBtn">
+        <span id="loginBtnText">Login</span>
+        <span id="loginBtnSpinner" style="display: none;" class="spinner"></span>
+      </button>
+    </form>
+    <div class="signup-link-row">
+      Don't have an account? <a href="#" id="showSignupModal">Sign up</a>
+    </div>
+  </div>
+  <!-- SIGNUP MODAL -->
+  <div class="modal-bg" id="signupModalBg">
+    <div class="signup-modal">
+      <button class="close-modal" id="closeSignupModal">&times;</button>
+      <h2>Sign Up</h2>
+      <form class="form-signup">
+        <input type="text" class="signup-inp" placeholder="First name" required>
+        <input type="text" class="signup-inp" placeholder="Last name" required>
+        <input type="email" class="signup-inp" placeholder="Email address" required>
+        <input type="password" class="signup-inp" placeholder="Password" required>
+        <div class="terms-row">
+          <label>
+            <input type="checkbox" required> Accept Terms &amp; Conditions
+          </label>
+        </div>
+        <button type="submit" class="btn-signup-main">Sign up &rarr;</button>
+      </form>
+      <div class="or-row">or</div>
+      <button type="button" class="google-btn"><i class="fab fa-google"></i> Sign up with Google</button>
+      <button type="button" class="apple-btn"><i class="fab fa-apple"></i> Sign up with Apple</button>
+    </div>
+  </div>
+</div>
+<script>
+const loginForm = document.getElementById('loginForm');
+const loginBtn = document.getElementById('loginBtn');
+const loginBtnText = document.getElementById('loginBtnText');
+const loginBtnSpinner = document.getElementById('loginBtnSpinner');
+const alertBox = document.getElementById('alertBox');
+loginForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const rememberMe = document.getElementById('rememberMe').checked;
+  if (!email || !password) {
+    showAlert('Please enter both email and password', 'error');
+    return;
+  }
+  loginBtn.disabled = true;
+  loginBtnText.style.display = 'none';
+  loginBtnSpinner.style.display = 'inline-block';
+  try {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('rememberMe', rememberMe);
+    const response = await fetch('/AttendEase/login', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    if (result.success) {
+      showAlert('Login successful! Redirecting...', 'success');
+      sessionStorage.setItem('user', JSON.stringify(result.user));
+      setTimeout(() => {window.location.href = result.redirectUrl;}, 1000);
+    } else {
+      showAlert(result.message || 'Login failed. Please try again.', 'error');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    showAlert('An error occurred. Please try again.', 'error');
+  } finally {
+    loginBtn.disabled = false;
+    loginBtnText.style.display = 'inline';
+    loginBtnSpinner.style.display = 'none';
+  }
+});
+function showAlert(message, type) {
+  alertBox.textContent = message;
+  alertBox.className = 'alert alert-' + type;
+  alertBox.style.display = 'block';
+  setTimeout(() => {alertBox.style.display = 'none';}, 5000);
+}
+window.addEventListener('load', function() {
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === 'attendease_user') {
+      document.getElementById('email').value = decodeURIComponent(value);
+      document.getElementById('rememberMe').checked = true;
+      break;
+    }
+  }
+});
+const signupModalBg = document.getElementById('signupModalBg');
+const showSignupModal = document.getElementById('showSignupModal');
+const closeSignupModal = document.getElementById('closeSignupModal');
+showSignupModal.addEventListener('click', function(e) {
+  e.preventDefault();
+  signupModalBg.classList.add('show');
+});
+closeSignupModal.addEventListener('click', function() {
+  signupModalBg.classList.remove('show');
+});
+signupModalBg.addEventListener('click', function(e){
+  if (e.target === signupModalBg) signupModalBg.classList.remove('show');
+});
+document.querySelector('.form-signup').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Signup successful! (frontend only)');
+  signupModalBg.classList.remove('show');
+});
+</script>
+</body>
+</html>

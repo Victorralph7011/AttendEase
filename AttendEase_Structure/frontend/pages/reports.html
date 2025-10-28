@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - AttendEase</title>
+    <!-- Montserrat font and FA icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main glass theme (add your own component/animation/responsive below as needed) -->
+    <style>
+        :root {
+            --bg: #12151b;
+            --surface: rgba(19,26,35,0.90);
+            --glass: rgba(25,32,42,0.50);
+            --blue: #14b3f4;
+            --primary: #10d8ee;
+            --glow: 0 0 24px #30c0ff59;
+            --stat-green: #1cfa79;
+            --stat-blue: #2ab6f6;
+            --stat-pink: #fe6ede;
+            --stat-yellow: #fab52c;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(to bottom, rgba(18, 21, 27, 0.85), rgba(18, 21, 27, 0.75)),
+                url('images/peakpx-3.jpg') center center / cover no-repeat fixed,
+                radial-gradient(ellipse at 0% 12%, #23627844 0, transparent 47%),
+                radial-gradient(ellipse at 89% 80%, #941bb644 0, transparent 50%),
+                var(--bg);
+            background-blend-mode: normal, darken, normal, normal, normal;
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #e9edfa;
+            overflow-x: hidden;
+        }
+        .navbar {
+            width: 100vw;
+            background: rgba(20,22,27,0.98);
+            position: fixed; top: 0; left: 0; z-index: 8;
+            box-shadow: 0 3px 24px #0a263a24;
+            height: 63px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 16px; left: 50%; transform: translateX(-50%);
+            max-width: 1180px; margin: 9px auto 0 auto;
+        }
+        .nav-container {
+            max-width: 1180px; width: 97vw; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; height: 56px;
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap:12px;
+            font-size: 1.18rem; font-weight: 800; color: #5EC6FF; letter-spacing:-.04em;
+        }
+        .nav-menu {display:flex;align-items:center;list-style:none;margin:0;padding:0;gap:11px;}
+        .nav-link {
+            color: #e9edfa;
+            font-size: .98rem;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 7px 23px 7px 12px;
+            border-radius: 10px; display: flex; align-items: center; gap:7px;
+            position: relative; opacity:.97; transition: background .15s, color .13s;
+        }
+        .nav-link.active, .nav-link:hover {background: #183252; color: #1ff;}
+        .nav-item.active .nav-link {background:#183252;color:#1ff;}
+        .nav-right {display: flex; align-items: center; gap:17px;}
+        .notification-icon {font-size:1.11rem;cursor:pointer;position:relative;}
+        .notification-badge {background: #fe70af; font-size: 0.75em;color: #fff; padding: 2px 7px; border-radius:9px;position: absolute; top: -8px; right: -10px; font-weight: 700;}
+        .user-profile{display:flex;align-items:center;gap:7px;cursor:pointer;}
+        .user-avatar {width:32px;height:32px;border-radius:50%;background:#3c568f;}
+        .user-name{font-weight:800;color:#c9daf5;}
+        /* Main glass card styles etc */
+        main.main-content {
+            width:100vw;
+            min-height:100vh;
+            padding-top:100px;
+            background: none;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        .container {width:96vw;max-width:1200px;margin:auto;}
+        .page-header h1 {
+            font-size:1.7rem;font-weight:700;color:#1cc6ff;
+            margin-bottom:8px; margin-top:30px; display:flex;align-items:center;gap:12px;
+            text-shadow: 0 2px 10px rgba(28, 198, 255, 0.18);
+        }
+        .page-header p {color:#c8d1e4;font-size:1.09rem;}
+        section {margin-bottom:24px;}
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            box-shadow: 0 6px 32px #11f3fe1a;
+            border:1.4px solid #1b273b6a;
+            padding: 20px 22px 19px 21px;
+            position: relative; overflow: hidden;
+        }
+        .card-header {display:flex; align-items:center; justify-content:space-between;}
+        .card-title {font-size:1.1rem;font-weight:700;color:#36e4fb;display:flex;align-items:center;gap:6px;}
+        .btn {border-radius:9px;padding:7px 18px;font-weight:700;cursor:pointer;border:none;}
+        .btn-primary {background:#14b3f4;color:#fff;}
+        .btn-primary:hover {background:#0e94d4;}
+        .btn-secondary {background:#383f58;color:#fff;}
+        .btn-success {background:#16ff7b;color:#183252;}
+        .table-container {overflow-x:auto;margin-top:12px;}
+        .table {
+            border-radius:10px;width:100%;margin-bottom:0;
+            font-size:1.02em;
+            background:none;
+            color:#e9edfa;
+            border-collapse:collapse;
+            box-shadow: 0 3px 16px #36e4fb1a;
+        }
+        .table thead {background:rgba(32,44,64,0.76);}
+        .table th, .table td {padding:13px 12px;text-align:left;}
+        .table th {font-weight:700;}
+        .table tr:nth-child(even) {background:rgba(30,36,46,0.6);}
+        .loading {text-align:center;}
+        .filters-section {margin-bottom:10px;}
+        .form-group {margin-bottom:16px;display:flex;flex-direction:column;}
+        .form-label {color:#6ccfff;font-weight:600;margin-bottom:7px;}
+        .form-select, .form-control {border-radius:7px;padding:6px 13px;border:1.1px solid #1b273b90;font-size:1em;}
+        .form-select:focus, .form-control:focus {border-color:#14b3f4;outline:none;}
+        .footer {
+            background: rgba(13,18,28,.88); color:#a8e3fa;
+            text-align:center; padding:17px 0;margin-top:30px;width:100%; font-size:.95em;
+            letter-spacing:.02em; box-shadow:0 -2px 18px #16468312;
+        }
+        .footer-links a {color:#67cfff;margin:0 12px;text-decoration:none;}
+        .footer-links a:hover{color:#26b1fa; text-decoration:underline;}
+        @media (max-width: 870px){.container{max-width:99vw;}.card{padding:9px;}}
+        @media (max-width: 600px){.container{padding:0 1vw;}
+            .navbar{border-radius:0;max-width:99vw;height:54px;}
+            .main-content{padding-top:68px;}
+            .card-header,.card-title{font-size:1em;}
+            .page-header h1{font-size:1.15em;}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-clipboard-check"></i>
+                <span>AttendEase</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="attendance.html" class="nav-link"><i class="fas fa-user-check"></i> <span>Attendance</span></a></li>
+                <li class="nav-item"><a href="marks.html" class="nav-link"><i class="fas fa-chart-line"></i> <span>Marks</span></a></li>
+                <li class="nav-item active"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i> <span>Reports</span></a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="notification-icon" id="notificationIcon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">2</span>
+                </div>
+                <div class="user-profile" id="userProfile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff" alt="User" class="user-avatar">
+                    <span class="user-name" id="userName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1><i class="fas fa-file-alt"></i> Reports</h1>
+                <p>Generate and download performance and attendance reports</p>
+            </section>
+
+            <!-- Filters -->
+            <section class="filters-section">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="filter-grid">
+                            <div class="form-group">
+                                <label class="form-label">Report Type</label>
+                                <select class="form-select" id="reportTypeFilter">
+                                    <option value="performance">Performance Report</option>
+                                    <option value="attendance">Attendance Report</option>
+                                    <option value="risk">At-Risk Students</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Subject</label>
+                                <select class="form-select" id="reportSubjectFilter">
+                                    <option value="">Select Subject</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="Physics">Physics</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="English">English</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: flex-end;">
+                                <button class="btn btn-primary" id="reportFilterBtn">
+                                    <i class="fas fa-search"></i> Generate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Report Results -->
+            <section class="reports-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-table"></i> Report Results</h3>
+                        <div>
+                            <button class="btn btn-secondary" id="reportsExportBtn">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table" id="reportsTable">
+                                <thead>
+                                    <tr id="reportsTableHeader">
+                                        <th>Roll Number</th>
+                                        <th>Student Name</th>
+                                        <th>Subject</th>
+                                        <th>Attendance %</th>
+                                        <th>Marks %</th>
+                                        <th>Grade</th>
+                                        <th>Risk Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reportsTableBody">
+                                    <!-- FAKE DATA -->
+                                    <tr>
+                                        <td>210101</td>
+                                        <td>Rahul Sharma</td>
+                                        <td>Mathematics</td>
+                                        <td>87%</td>
+                                        <td>94%</td>
+                                        <td>A+</td>
+                                        <td style="color:#17dd56;">Low</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210102</td>
+                                        <td>Priya Gupta</td>
+                                        <td>Physics</td>
+                                        <td>82%</td>
+                                        <td>88%</td>
+                                        <td>A</td>
+                                        <td style="color:#f7be26;">Medium</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210103</td>
+                                        <td>Aman Verma</td>
+                                        <td>Chemistry</td>
+                                        <td>69%</td>
+                                        <td>61%</td>
+                                        <td>B</td>
+                                        <td style="color:#ff4266;">High</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210104</td>
+                                        <td>Sneha Reddy</td>
+                                        <td>English</td>
+                                        <td>93%</td>
+                                        <td>96%</td>
+                                        <td>A+</td>
+                                        <td style="color:#17dd56;">Low</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210105</td>
+                                        <td>Ishaan Singh</td>
+                                        <td>Mathematics</td>
+                                        <td>74%</td>
+                                        <td>65%</td>
+                                        <td>C</td>
+                                        <td style="color:#ff4266;">High</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210106</td>
+                                        <td>Riya Mehta</td>
+                                        <td>Physics</td>
+                                        <td>89%</td>
+                                        <td>92%</td>
+                                        <td>A+</td>
+                                        <td style="color:#17dd56;">Low</td>
+                                    </tr>
+                                    <tr>
+                                        <td>210107</td>
+                                        <td>Arjun Rao</td>
+                                        <td>Chemistry</td>
+                                        <td>85%</td>
+                                        <td>78%</td>
+                                        <td>B+</td>
+                                        <td style="color:#f7be26;">Medium</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 AttendEase - SRMIST. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Help</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

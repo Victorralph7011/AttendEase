@@ -1,0 +1,465 @@
+/* ============================================
+   AttendEase - Responsive Styles
+   ============================================ */
+
+/* Extra Large Devices (1400px and up) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* Large Devices (1200px and up) */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Medium Devices (992px and up) */
+@media (max-width: 992px) {
+    .container {
+        max-width: 960px;
+        padding: var(--spacing-md);
+    }
+    
+    /* Navigation */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        flex-direction: column;
+        box-shadow: var(--shadow-lg);
+        padding: 1rem;
+    }
+    
+    .nav-menu.show {
+        display: flex;
+    }
+    
+    .nav-item {
+        width: 100%;
+    }
+    
+    .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    /* Welcome Section */
+    .welcome-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+    
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Activity Grid */
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* At-Risk Grid */
+    .at-risk-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+}
+
+/* Small Devices (768px and up) */
+@media (max-width: 768px) {
+    /* Typography */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    
+    /* Container */
+    .container {
+        max-width: 720px;
+        padding: 1rem;
+    }
+    
+    /* Navigation */
+    .nav-container {
+        padding: 1rem;
+    }
+    
+    .nav-brand {
+        font-size: 1.25rem;
+    }
+    
+    .user-name {
+        display: none;
+    }
+    
+    /* Welcome Section */
+    .welcome-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .welcome-content p {
+        font-size: 1rem;
+    }
+    
+    .welcome-date {
+        font-size: 0.9rem;
+    }
+    
+    /* Stat Cards */
+    .stat-value {
+        font-size: 1.75rem;
+    }
+    
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
+    
+    /* Charts */
+    .chart-container {
+        height: 250px;
+    }
+    
+    /* Tables */
+    .table {
+        font-size: 0.9rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    /* Modal */
+    .modal-content {
+        width: 95%;
+    }
+    
+    .modal-title {
+        font-size: 1.25rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Forms */
+    .form-control,
+    .form-select {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Activity Items */
+    .activity-item {
+        padding: 0.85rem;
+    }
+    
+    .activity-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
+    
+    /* Dropdown Menus */
+    .dropdown-menu {
+        min-width: 280px;
+        max-width: 90vw;
+    }
+}
+
+/* Extra Small Devices (576px and down) */
+@media (max-width: 576px) {
+    /* Typography */
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    /* Container */
+    .container {
+        padding: 0.75rem;
+    }
+    
+    /* Navigation */
+    .nav-brand span {
+        display: none;
+    }
+    
+    .nav-right {
+        gap: 0.75rem;
+    }
+    
+    /* Welcome Section */
+    .welcome-section {
+        padding: var(--spacing-md);
+    }
+    
+    .welcome-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* Section Titles */
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    /* Stat Cards */
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .stat-title {
+        font-size: 0.85rem;
+    }
+    
+    .stat-change {
+        font-size: 0.8rem;
+    }
+    
+    /* Charts */
+    .chart-card {
+        padding: 1rem;
+    }
+    
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .chart-container {
+        height: 220px;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+    
+    /* Activity Cards */
+    .activity-card {
+        padding: 1rem;
+    }
+    
+    .activity-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .activity-details h4 {
+        font-size: 0.9rem;
+    }
+    
+    .activity-details p {
+        font-size: 0.8rem;
+    }
+    
+    /* Upcoming Items */
+    .upcoming-item {
+        padding: 0.85rem;
+    }
+    
+    .upcoming-date {
+        min-width: 50px;
+        padding: 0.5rem;
+    }
+    
+    .upcoming-date .day {
+        font-size: 1.25rem;
+    }
+    
+    .upcoming-date .month {
+        font-size: 0.75rem;
+    }
+    
+    /* At-Risk Cards */
+    .at-risk-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .risk-card {
+        padding: 1rem;
+    }
+    
+    /* Tables - Horizontal Scroll */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table {
+        min-width: 600px;
+    }
+    
+    /* Modal */
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem;
+    }
+    
+    /* Buttons */
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+    }
+    
+    /* Forms */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    /* Pagination */
+    .pagination {
+        flex-wrap: wrap;
+    }
+    
+    .pagination-item {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Dropdown */
+    .dropdown-menu {
+        min-width: 260px;
+        left: auto;
+        right: 0;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Portrait Orientation */
+@media (orientation: portrait) and (max-width: 768px) {
+    .welcome-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+    .welcome-section {
+        padding: 1rem;
+    }
+    
+    .welcome-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .filter-select,
+    .dropdown-menu,
+    .modal {
+        display: none !important;
+    }
+    
+    .main-content {
+        padding: 0;
+    }
+    
+    .card,
+    .table-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Optimize images and icons for retina displays */
+    .user-avatar,
+    .profile-avatar {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Dark Mode Support (Optional) */
+@media (prefers-color-scheme: dark) {
+    /* Add dark mode styles if needed */
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
